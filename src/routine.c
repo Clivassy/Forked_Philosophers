@@ -59,11 +59,10 @@ int	ft_is_dead(t_data *input)
 	{	
 		pthread_mutex_lock(&input->m_eat);
 		if (input->nb_philos == 1)
-			ft_exit_2(input->philosophers);
-		/*{
+		{
 			pthread_mutex_unlock(&input->m_eat);
 			exit(0);
-		}*/
+		}
 		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
 			&& input->philosophers[i].time != 0)
 		{
