@@ -60,6 +60,8 @@ int   ft_init_struct(t_data *input, int ac, char **av)
     input->time_to_think = (input->time_to_eat - input->time_to_sleep) * 1000 + 1000;
     if (ac == 6)
         input->must_eat = ft_atoi(av[5]);
+    if (input->nb_philos > 200)
+        ft_exit(input, "Error: you can't use more than 200 philosophers");
     if (input->nb_philos < 1 || input->time_to_die < 1
 		|| input->time_to_eat < 1 || input->time_to_sleep < 1
 		|| (av[5] && input->must_eat < 1) )

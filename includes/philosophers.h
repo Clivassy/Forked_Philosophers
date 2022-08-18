@@ -118,5 +118,5 @@ int	ft_check_death(t_philo *one_philo);
 int	ft_check_meals(t_philo *one_philo);
 int	ft_is_dead(t_data *input, t_philo *one_philo);
 //int ft_monitoring(t_data *input, t_philo *one_philo);
-
+void	ft_clean(t_data *input);
 #endif

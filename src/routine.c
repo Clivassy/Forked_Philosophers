@@ -24,9 +24,14 @@ int	ft_is_dead(t_data *input, t_philo *one_philo)
 	int	i;
 
 	i = 0;
-	while (i < input->nb_philos)
+	while (++i < input->nb_philos)
 	{
 		pthread_mutex_lock(&input->m_eat);
+		if (input->nb_philos == 1)
+		{
+			if (ft_check_death(one_philo) == 1)
+				ft_exit(0);
+		}
 		if (input->time_to_die < ft_time_diff(one_philo[i].time, ft_get_timestamp())
 			&& one_philo[i].time != 0)
 		{
@@ -39,7 +44,6 @@ int	ft_is_dead(t_data *input, t_philo *one_philo)
 		}
 		else
 			pthread_mutex_unlock(&input->m_eat);
-		i++;
 	}
 	return (0);
 }
@@ -123,26 +127,3 @@ int	ft_eat_enough(t_data *input, t_philo *one_philo)
 	}
 	return (0);
 }
-/*{
-	int	i;
-
-	i = 0;
-	pthread_mutex_lock(&input->m_eat);
-	while (input->must_eat != -1 && i < input->nb_philos
-		&& one_philo[i].nb_of_meals >= input->must_eat)
-	{
-		i++;
-	}
-	pthread_mutex_unlock(&input->m_eat);
-	if (i >= input->nb_philos)
-	{
-		pthread_mutex_lock(&input->m_eat);
-		input->stop_eating = 1;
-		pthread_mutex_unlock(&input->m_eat);
-	}
-	if (input->stop_eating == 1)
-	{
-		return (1);
-	}	
-	return (0);
-}*/
