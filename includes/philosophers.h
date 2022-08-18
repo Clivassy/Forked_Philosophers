@@ -105,7 +105,8 @@ long long    ft_get_timestamp();
 void	ft_usleep(int ms);
 //void	ft_monitoring(t_data *input);
 
-int	ft_eat_enough(t_data *input, t_philo *one_philo);
+int	ft_eat_enough(t_philo *one_philo);
+
 //void	*ft_died(void *arg);
 //void    ft_sleep_and_think(t_philo *one_philo);
 int     ft_sleep_and_think(t_philo *one_philo);
@@ -116,7 +117,8 @@ long long	ft_time_diff(long long time_start, long long time_end);
 void	ft_wait_2(long long time, t_data *input);
 int	ft_check_death(t_philo *one_philo);
 int	ft_check_meals(t_philo *one_philo);
-int	ft_is_dead(t_data *input, t_philo *one_philo);
+int	ft_is_dead(t_data *input);
 //int ft_monitoring(t_data *input, t_philo *one_philo);
 void	ft_clean(t_data *input);
+void    ft_exit_2(t_philo *philo);
 #endif

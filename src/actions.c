@@ -61,10 +61,10 @@ void  ft_take_forks(t_philo *one_philo)
         {
             ft_usleep(one_philo->input->time_to_die + 1);
             ft_print_state(one_philo, DIED);
+            pthread_mutex_unlock(&one_philo->left_fork);
             pthread_mutex_lock(&one_philo->input->m_dead);
 		    one_philo->input->is_dead = 1;
 		    pthread_mutex_unlock(&one_philo->input->m_dead);
-            pthread_mutex_unlock(&one_philo->left_fork);
         }
     ft_print_state(one_philo, TOOK_FORK);
 }

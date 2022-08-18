@@ -1,6 +1,37 @@
 #include "../includes/philosophers.h"
 
+/*int	ft_monitoring(t_data *input, t_philo *one_philo)
+{
+	while (1)
+	{
+		if (ft_is_dead(input, one_philo) == 1)
+			return (1);
+		if (input->must_eat != -1)
+			if (ft_eat_enough(input, one_philo) == 1)
+				return (1);
+		usleep(100);
+	}
+	return (0);
+}*/
+
 void	*ft_monitoring(void *arg)
+{
+	t_philo *one_philo;
+
+	one_philo = (t_philo*)arg;
+	while (1)
+	{
+		if (ft_is_dead(one_philo->input) == 1)
+			return (NULL);
+		if (one_philo->input->must_eat != -1)
+			if (ft_eat_enough(one_philo) == 1)
+				return (NULL);
+		usleep(100);
+	}
+	return (NULL);
+}
+
+/*void	*ft_monitoring(void *arg)
 {
 	t_data *input;
 	t_philo *one_philo;
@@ -17,26 +48,27 @@ void	*ft_monitoring(void *arg)
 		usleep(100);
 	}
 	return (NULL);
-}
+}*/
 
-int	ft_is_dead(t_data *input, t_philo *one_philo)
+int	ft_is_dead(t_data *input)
 {
 	int	i;
-
-	i = 0;
+	
+	i = -1;
 	while (++i < input->nb_philos)
-	{
+	{	
 		pthread_mutex_lock(&input->m_eat);
 		if (input->nb_philos == 1)
-		{
-			if (ft_check_death(one_philo) == 1)
-				ft_exit(0);
-		}
-		if (input->time_to_die < ft_time_diff(one_philo[i].time, ft_get_timestamp())
-			&& one_philo[i].time != 0)
+			ft_exit_2(input->philosophers);
+		/*{
+			pthread_mutex_unlock(&input->m_eat);
+			exit(0);
+		}*/
+		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
+			&& input->philosophers[i].time != 0)
 		{
 			pthread_mutex_unlock(&input->m_eat);
-			ft_print_state(one_philo, DIED);
+			ft_print_state(input->philosophers, DIED);
 			pthread_mutex_lock(&input->m_dead);
 			input->is_dead = 1;
 			pthread_mutex_unlock(&input->m_dead);
@@ -103,26 +135,26 @@ void    *ft_live(void *arg)
     return (NULL);
 }
 
-int	ft_eat_enough(t_data *input, t_philo *one_philo)
+int	ft_eat_enough(t_philo *one_philo)
 {
 	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
-	pthread_mutex_lock(&input->m_eat_enough);
-	while (i < input->nb_philos)
+	pthread_mutex_lock(&one_philo->input->m_eat_enough);
+	i = 0;
+	while (i < one_philo->input->nb_philos)
 	{
 		if (one_philo[i].enough_meals == 1)
 			count++;
 		i++;
 	}
 	pthread_mutex_unlock(&one_philo->input->m_eat_enough);
-	if (count >= input->nb_philos)
+	if (count >= one_philo->input->nb_philos)
 	{
-		pthread_mutex_lock(&input->m_eat);
-		input->stop_eating = 1;
-		pthread_mutex_unlock(&input->m_eat);
+		pthread_mutex_lock(&one_philo->input->m_eat);
+		one_philo->input->stop_eating = 1;
+		pthread_mutex_unlock(&one_philo->input->m_eat);
 		return (1);
 	}
 	return (0);

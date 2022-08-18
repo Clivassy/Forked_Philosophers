@@ -16,7 +16,8 @@ void    ft_init_philos(t_data *input)
 {
     int i; 
 
-	input->philosophers = malloc(sizeof(t_philo) * input->nb_philos);
+    input->philosophers = calloc(input->nb_philos, sizeof(t_philo));
+    //input->philosophers = malloc(sizeof(t_philo) * input->nb_philos);
     if (!input->philosophers)
         ft_exit(input, "error: malloc allocation failed");
     i = 0;
