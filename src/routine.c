@@ -107,7 +107,7 @@ void    *ft_live(void *arg)
 		//	break ;
 		ft_eat(one_philo);
 		//if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
-			//break ;
+		//	break ;
 		ft_sleep(one_philo);
 		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
 			break ;
