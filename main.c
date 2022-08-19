@@ -15,10 +15,13 @@ void	ft_clean(t_data *input)
 	i = 0;
 	while (i < input->nb_philos)
 	{
-		free(&input->philosophers[i]);
 		pthread_mutex_destroy(&input->philosophers[i].left_fork);
 		i++;
 	}
+	i = 0;
+	while (i < input->nb_philos)
+		free(&input->philosophers[i]);
+	i++;
 	pthread_mutex_destroy(&input->m_eat);
     pthread_mutex_destroy(&input->m_print);
 	pthread_mutex_destroy(&input->m_dead);

@@ -2,7 +2,7 @@
 
 void    ft_exit(t_data *input, char *msg)
 {
-  int i;
+  /*int i;
 
   i = 0;
 	if (input->philosophers)
@@ -10,7 +10,8 @@ void    ft_exit(t_data *input, char *msg)
     while (i < input->nb_philos)
       free(&input->philosophers[i]);
     i++;
-  }
+  }*/
+  (void)input;
   printf(RED"%s\n"NORMAL, msg);
   exit(EXIT_FAILURE);
 }

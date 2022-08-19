@@ -97,7 +97,7 @@ void    *ft_live(void *arg)
 
     one_philo = (t_philo*)arg;
 	if (one_philo->id % 2 == 0)
-		ft_usleep(2);
+		usleep(1500);
 	while (1)
 	{
 		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
@@ -106,8 +106,8 @@ void    *ft_live(void *arg)
 		//if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
 		//	break ;
 		ft_eat(one_philo);
-	//	if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
-	//		break ;
+		//if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
+			//break ;
 		ft_sleep(one_philo);
 		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
 			break ;
