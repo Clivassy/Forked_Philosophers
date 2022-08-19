@@ -34,9 +34,13 @@ void    ft_create_threads(t_data *input)
             }
         i++;
     }
-    if (pthread_create(&check_death, NULL, &ft_monitoring, input->philosophers))
-        ft_exit(input, "Error: can't create thread");
-    pthread_detach(check_death); // sinon leaks -> permet de ne pas attendre comme av join.
+    if (input->nb_philos > 1)
+    {
+        if (pthread_create(&check_death, NULL, &ft_monitoring, input->philosophers))
+            ft_exit(input, "Error: can't create thread");
+        pthread_detach(check_death); 
+    }
+// sinon leaks -> permet de ne pas attendre comme av join.
     ft_join_threads(input);
     //pthread_join(check_death, NULL);
 }

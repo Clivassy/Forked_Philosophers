@@ -25,13 +25,6 @@ int	ft_is_dead(t_data *input)
 	while (++i < input->nb_philos)
 	{	
 		pthread_mutex_lock(&input->m_eat);
-		if (input->nb_philos == 1)
-		{
-			pthread_mutex_unlock(&input->m_eat);
-			ft_clean(input);
-			free(input->philosophers);
-			pthread_exit(NULL);
-		}
 		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
 			&& input->philosophers[i].time != 0)
 		{
