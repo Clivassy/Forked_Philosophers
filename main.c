@@ -38,5 +38,6 @@ int main(int argc, char **argv)
     ft_init_philos(&input);
     ft_create_threads(&input);
     ft_clean(&input);
+	free(input.philosophers);
     return (0);
 }

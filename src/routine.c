@@ -28,6 +28,7 @@ int	ft_is_dead(t_data *input)
 		if (input->nb_philos == 1)
 		{
 			pthread_mutex_unlock(&input->m_eat);
+			ft_clean(input);
 			exit(0);
 		}
 		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
