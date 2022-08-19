@@ -19,11 +19,10 @@ void    ft_print_state(t_philo *one_philo, char *msg)
 	pthread_mutex_unlock(&one_philo->input->m_print);
 }
 
-int ft_sleep(t_philo *one_philo)
+void ft_sleep(t_philo *one_philo)
 {
     ft_print_state(one_philo, SLEEPING);
     ft_usleep(one_philo->input->time_to_sleep);
-    return (0);
 }
 
 void	ft_leave_forks(t_philo *one_philo)
