@@ -3,8 +3,8 @@
 /* ------------------------------------------------------------
 1\ Initiatisation de la structure d'arguments + check des arguments
 2\ Initialisation de la structure de threads (t_philo)
-3\ Création des threads : un thread par philo.
-4\ Fonction OU autre thread ? qui viendra gérer les cas d'arrets : mort / assez de meals / temps écoulé
+3\ Création des threads : un thread par philo + un thread pour monitorer la fin de la simulation.
+4\ Ce thread  gère 1) la mort d'un philo et 2) lorsque chaque philo a assez mangé.
 5\ Destruction des mutexs + libération de la mémoire allouées pour les structures.
 ---------------------------------------------------------------- */
 

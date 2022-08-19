@@ -1,19 +1,5 @@
 #include "../includes/philosophers.h"
 
-/*int	ft_monitoring(t_data *input, t_philo *one_philo)
-{
-	while (1)
-	{
-		if (ft_is_dead(input, one_philo) == 1)
-			return (1);
-		if (input->must_eat != -1)
-			if (ft_eat_enough(input, one_philo) == 1)
-				return (1);
-		usleep(100);
-	}
-	return (0);
-}*/
-
 void	*ft_monitoring(void *arg)
 {
 	t_philo *one_philo;
@@ -30,25 +16,6 @@ void	*ft_monitoring(void *arg)
 	}
 	return (NULL);
 }
-
-/*void	*ft_monitoring(void *arg)
-{
-	t_data *input;
-	t_philo *one_philo;
-
-	one_philo = (t_philo*)arg;
-	input = one_philo->input;
-	while (1)
-	{
-		if (ft_is_dead(input, one_philo) == 1)
-			return (NULL);
-		if (input->must_eat != -1)
-			if (ft_eat_enough(input, one_philo) == 1)
-				return (NULL);
-		usleep(100);
-	}
-	return (NULL);
-}*/
 
 int	ft_is_dead(t_data *input)
 {
@@ -78,6 +45,23 @@ int	ft_is_dead(t_data *input)
 	}
 	return (0);
 }
+
+
+/*int	ft_check_end(t_philo *one_philo)
+{
+	pthread_mutex_lock(&one_philo->input->m_dead);
+	pthread_mutex_lock(&one_philo->input->m_eat);
+	if (one_philo->input->is_end == 1)
+	{
+		pthread_mutex_unlock(&one_philo->input->m_dead);
+		pthread_mutex_unlock(&one_philo->input->m_eat);
+		return (1);
+	}
+	pthread_mutex_unlock(&one_philo->input->m_dead);
+	pthread_mutex_unlock(&one_philo->input->m_eat);
+	return (0);
+}*/
+
 
 int	ft_check_death(t_philo *one_philo)
 {
@@ -119,17 +103,19 @@ void    *ft_live(void *arg)
 		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
 			break ;
 		ft_take_forks(one_philo);
-		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
-			break ;
+		//if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
+		//	break ;
 		ft_eat(one_philo);
-		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
-			break ;
-		ft_sleep_and_think(one_philo);
-		if (one_philo->input->time_to_sleep < one_philo->input->time_to_eat)
-			usleep(one_philo->input->time_to_think);
+	//	if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
+	//		break ;
+		ft_sleep(one_philo);
 		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
 			break ;
 		ft_print_state(one_philo, THINKING);
+		if (one_philo->input->time_to_sleep < one_philo->input->time_to_eat)
+			usleep(one_philo->input->time_to_think);
+		else
+			usleep(1000);
 	}
     return (NULL);
 }

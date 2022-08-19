@@ -46,7 +46,7 @@ int ft_check_input(char **av)
         {
             if (!ft_isdigit(av[i][j]))
 			{
-				printf("error: invalid argument");
+				printf(RED"Error: invalid argument\n"NORMAL);
         		exit(EXIT_FAILURE);
 			}
             j++;

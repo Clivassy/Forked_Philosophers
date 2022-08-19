@@ -68,7 +68,6 @@ typedef struct s_data
     pthread_mutex_t m_print;
     pthread_mutex_t m_dead;
     pthread_mutex_t m_eat;
-    pthread_mutex_t m_end;
     int is_over;
     int is_dead;
 }	t_data;
@@ -89,6 +88,7 @@ void    ft_join_threads(t_data *input);
 void    *ft_live(void *arg);
 
 // actions
+void    ft_sleep(t_philo *one_philo);
 void   ft_take_forks(t_philo *one_philo);
 void	ft_leave_forks(t_philo *one_philo);
 void    ft_eat(t_philo *one_philo);
@@ -106,9 +106,6 @@ void	ft_usleep(int ms);
 //void	ft_monitoring(t_data *input);
 
 int	ft_eat_enough(t_philo *one_philo);
-
-//void	*ft_died(void *arg);
-//void    ft_sleep_and_think(t_philo *one_philo);
 int     ft_sleep_and_think(t_philo *one_philo);
 
 void	*ft_monitoring(void *arg);
@@ -117,8 +114,6 @@ long long	ft_time_diff(long long time_start, long long time_end);
 void	ft_wait_2(long long time, t_data *input);
 int	ft_check_death(t_philo *one_philo);
 int	ft_check_meals(t_philo *one_philo);
-int	ft_is_dead(t_data *input);
-//int ft_monitoring(t_data *input, t_philo *one_philo);
+int	    ft_is_dead(t_data *input);
 void	ft_clean(t_data *input);
-void    ft_exit_2(t_philo *philo);
 #endif

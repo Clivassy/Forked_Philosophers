@@ -38,7 +38,7 @@ void    ft_create_threads(t_data *input)
         ft_exit(input, "Error: can't create thread");
     pthread_detach(check_death); // sinon leaks -> permet de ne pas attendre comme av join.
     ft_join_threads(input);
-    
+    //pthread_join(check_death, NULL);
 }
 
 void	ft_init_mutex(t_data *input)
