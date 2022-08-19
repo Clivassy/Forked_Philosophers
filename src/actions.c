@@ -23,7 +23,7 @@ void ft_sleep(t_philo *one_philo)
 {
     ft_print_state(one_philo, SLEEPING);
     ft_usleep(one_philo->input->time_to_sleep);
-    ft_leave_forks(one_philo);
+   // ft_leave_forks(one_philo);
 }
 
 void	ft_leave_forks(t_philo *one_philo)
@@ -50,7 +50,10 @@ void   ft_eat(t_philo *one_philo)
 	}
     pthread_mutex_unlock(&one_philo->input->m_eat);
     ft_usleep(one_philo->input->time_to_eat);
-    ft_leave_forks(one_philo);
+    pthread_mutex_unlock(one_philo->right_fork);
+	if (one_philo->input->nb_philos != 1)
+		pthread_mutex_unlock(&one_philo->left_fork);
+   // ft_leave_forks(one_philo);
 }
 
 void  ft_take_forks(t_philo *one_philo)
