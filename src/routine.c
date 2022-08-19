@@ -30,7 +30,7 @@ int	ft_is_dead(t_data *input)
 			pthread_mutex_unlock(&input->m_eat);
 			ft_clean(input);
 			free(input->philosophers);
-			exit(3);
+			pthread_exit(NULL);
 		}
 		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
 			&& input->philosophers[i].time != 0)
