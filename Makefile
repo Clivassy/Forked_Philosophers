@@ -10,6 +10,8 @@ SRCS += src/routine.c
 SRCS += src/actions.c
 SRCS += src/init.c
 SRCS += src/utils.c
+SRCS += src/debug.c
+SRCS += src/monitoring.c
 SRCS += src/time.c
 
 OBJS = ${SRCS:.c=.o}

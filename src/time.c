@@ -5,13 +5,13 @@ long long	ft_time_diff(long long time_start, long long time_end)
 	return (time_end - time_start);
 }
 
+// return time in millisecond
 long long    ft_get_timestamp()
 {
 	 struct timeval current_time;
     long long timestamp;
 
     gettimeofday(&current_time, NULL);
-	// formule pour calculer le temps en millisecondes
 	timestamp = current_time.tv_sec * 1000 
         + current_time.tv_usec / 1000;
 	return (timestamp);

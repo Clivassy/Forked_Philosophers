@@ -1,17 +1,14 @@
 #include "../includes/philosophers.h"
 
-void    ft_exit(t_data *input, char *msg)
+void    ft_exit(char *msg)
 {
-  /*int i;
-
-  i = 0;
-	if (input->philosophers)
-  {
-    while (i < input->nb_philos)
-      free(&input->philosophers[i]);
-    i++;
-  }*/
-  (void)input;
   printf(RED"%s\n"NORMAL, msg);
+  exit(EXIT_FAILURE);
+}
+
+void    ft_exit_2(t_data *input, char *msg)
+{
+  printf(RED"%s\n"NORMAL, msg);
+  ft_clean(input);
   exit(EXIT_FAILURE);
 }

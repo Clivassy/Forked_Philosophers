@@ -1,5 +1,8 @@
 #include "../includes/philosophers.h"
 
+// Terminate the simulation in two cases :
+// > Death of one philo : not enough time_to_die 
+// > time_each_philos_must_eat is reached
 void	*ft_monitoring(void *arg)
 {
 	t_philo *one_philo;
@@ -17,75 +20,7 @@ void	*ft_monitoring(void *arg)
 	return (NULL);
 }
 
-int	ft_is_dead(t_data *input)
-{
-	int	i;
-	
-	i = -1;
-	while (++i < input->nb_philos)
-	{	
-		pthread_mutex_lock(&input->m_eat);
-		if (input->time_to_die < ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
-			&& input->philosophers[i].time != 0)
-		{
-			pthread_mutex_unlock(&input->m_eat);
-			ft_print_state(input->philosophers, DIED);
-			pthread_mutex_lock(&input->m_dead);
-			input->is_dead = 1;
-			pthread_mutex_unlock(&input->m_dead);
-			return (1);
-		}
-		else
-			pthread_mutex_unlock(&input->m_eat);
-	}
-	return (0);
-}
-
-
-/*int	ft_check_end(t_philo *one_philo)
-{
-	pthread_mutex_lock(&one_philo->input->m_dead);
-	pthread_mutex_lock(&one_philo->input->m_eat);
-	if (one_philo->input->is_end == 1)
-	{
-		pthread_mutex_unlock(&one_philo->input->m_dead);
-		pthread_mutex_unlock(&one_philo->input->m_eat);
-		return (1);
-	}
-	pthread_mutex_unlock(&one_philo->input->m_dead);
-	pthread_mutex_unlock(&one_philo->input->m_eat);
-	return (0);
-}*/
-
-
-int	ft_check_death(t_philo *one_philo)
-{
-	pthread_mutex_lock(&one_philo->input->m_dead);
-	if (one_philo->input->is_dead == 1)
-	{
-		pthread_mutex_unlock(&one_philo->input->m_dead);
-		return (1);
-	}
-	pthread_mutex_unlock(&one_philo->input->m_dead);
-	return (0);
-}
-
-int	ft_check_meals(t_philo *one_philo)
-{
-	pthread_mutex_lock(&one_philo->input->m_eat);
-	if (one_philo->input->stop_eating == 1)
-	{
-		pthread_mutex_unlock(&one_philo->input->m_eat);
-		return (1);
-	}
-	pthread_mutex_unlock(&one_philo->input->m_eat);
-	return (0);
-}
-
-/* Deux cas mettent fin au process de vie des philos:
-* > La mort d'un philo : time_to_die insuffisant
-* > Le nombre de time_each_philos_must_eat est atteint
-*/
+// While no philos died or have eat enough the simulation goes on. 
 void    *ft_live(void *arg)
 {
     t_philo *one_philo;
@@ -113,29 +48,4 @@ void    *ft_live(void *arg)
 			usleep(1000);
 	}
     return (NULL);
-}
-
-int	ft_eat_enough(t_philo *one_philo)
-{
-	int	i;
-	int	count;
-
-	count = 0;
-	pthread_mutex_lock(&one_philo->input->m_eat_enough);
-	i = 0;
-	while (i < one_philo->input->nb_philos)
-	{
-		if (one_philo[i].enough_meals == 1)
-			count++;
-		i++;
-	}
-	pthread_mutex_unlock(&one_philo->input->m_eat_enough);
-	if (count >= one_philo->input->nb_philos)
-	{
-		pthread_mutex_lock(&one_philo->input->m_eat);
-		one_philo->input->stop_eating = 1;
-		pthread_mutex_unlock(&one_philo->input->m_eat);
-		return (1);
-	}
-	return (0);
 }
