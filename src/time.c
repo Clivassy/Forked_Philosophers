@@ -1,10 +1,5 @@
 #include "../includes/philosophers.h"
 
-long long	ft_time_diff(long long time_start, long long time_end)
-{
-	return (time_end - time_start);
-}
-
 // return time in millisecond
 long long    ft_get_timestamp()
 {

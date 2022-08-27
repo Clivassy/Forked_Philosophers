@@ -43,8 +43,7 @@ int	ft_check_meals(t_philo *one_philo)
 	return (0);
 }
 
-// Check if 
-// if all philos had enough meals the variable stop_eating is set to 1
+//
 int	ft_is_dead(t_data *input)
 {
 	int	i;
@@ -55,8 +54,7 @@ int	ft_is_dead(t_data *input)
 		pthread_mutex_lock(&input->m_eat);
 		if (input->time_to_die < 
             (ft_get_timestamp() - input->philosophers[i].time)
-           // ft_time_diff(input->philosophers[i].time, ft_get_timestamp())
-			&& input->philosophers[i].time != 0)
+				&& input->philosophers[i].time != 0)
 		{
 			pthread_mutex_unlock(&input->m_eat);
 			ft_print_state(input->philosophers, DIED);

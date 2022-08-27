@@ -61,10 +61,6 @@ int     ft_init_struct(t_data *input, int ac, char **av);
 void	ft_init_mutex(t_data *input);
 void    ft_init_philos(t_data *input);
 
-// ----- free and quit ----- //
-void    ft_exit(char *msg);
-void    ft_exit_2(t_data *input, char *msg);
-
 // ------ thread.c -------// 
 void    ft_create_threads(t_data *input);
 void    ft_join_threads(t_data *input);
@@ -73,11 +69,21 @@ void    ft_join_threads(t_data *input);
 void	*ft_monitoring(void *arg);
 void    *ft_live(void *arg);
 
+//------- monitoring.c ------//
+int     ft_eat_enough(t_philo *one_philo);
+int     ft_is_dead(t_data *input);
+int     ft_check_meals(t_philo *one_philo);
+int     ft_check_death(t_philo *one_philo);
+
 // ----- actions -----//
 void    ft_take_forks(t_philo *one_philo);
 void    ft_eat(t_philo *one_philo);
 void	ft_leave_forks(t_philo *one_philo);
 void    ft_sleep(t_philo *one_philo);
+
+// ----- free and quit ----- //
+void    ft_exit(char *msg);
+void    ft_exit_2(t_data *input, char *msg);
 
 //--- utils.c ---- //
 void    ft_print_state(t_philo *one_philo, char *str);
@@ -90,11 +96,4 @@ int     ft_strcmp(char *s1, char *s2);
 //------ time.c -------//
 long long   ft_get_timestamp();
 void        ft_usleep(int ms);
-long long   ft_time_diff(long long time_start, long long time_end);
-
-//------- monitoring.c ------//
-int     ft_eat_enough(t_philo *one_philo);
-int     ft_is_dead(t_data *input);
-int     ft_check_meals(t_philo *one_philo);
-int     ft_check_death(t_philo *one_philo);
 #endif
