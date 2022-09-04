@@ -30,12 +30,14 @@ void    *ft_live(void *arg)
 		usleep(1500);
 	while (1)
 	{
-		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
+		if (ft_check_death(one_philo) || ft_check_meals(one_philo))
 			break ;
 		ft_take_forks(one_philo);
 		ft_eat(one_philo);
+		if (ft_check_death(one_philo) || ft_check_meals(one_philo))
+			break ;
 		ft_sleep(one_philo);
-		if (ft_check_death(one_philo) == 1 || ft_check_meals(one_philo) == 1)
+		if (ft_check_death(one_philo) || ft_check_meals(one_philo))
 			break ;
 		ft_print_state(one_philo, THINKING);
 		if (one_philo->input->time_to_sleep < one_philo->input->time_to_eat)

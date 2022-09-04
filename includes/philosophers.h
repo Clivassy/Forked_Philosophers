@@ -81,6 +81,10 @@ void    ft_eat(t_philo *one_philo);
 void	ft_leave_forks(t_philo *one_philo);
 void    ft_sleep(t_philo *one_philo);
 
+// ----- actions_utils.c -----//
+void    ft_one_philo(t_philo *one_philo);
+void    ft_prioritize(t_philo *one_philo);
+
 // ----- free and quit ----- //
 void    ft_exit(char *msg);
 void    ft_exit_2(t_data *input, char *msg);

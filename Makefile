@@ -13,6 +13,7 @@ SRCS += src/utils.c
 SRCS += src/debug.c
 SRCS += src/monitoring.c
 SRCS += src/time.c
+SRCS += src/actions_utils.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -22,7 +23,7 @@ INCLUDES_DIR= -I ./includes/
 
 # Compilateurs
 CC = cc
-CFLAGS = -fsanitize=thread -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=thread
 
 ##########   RULES   ##########
 all: $(NAME)
