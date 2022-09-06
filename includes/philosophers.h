@@ -57,8 +57,8 @@ void	ft_init_mutex(t_data *input);
 void    ft_init_philos(t_data *input);
 
 // ------ thread.c -------// 
-void    ft_create_threads(t_data *input);
-void    ft_join_threads(t_data *input);
+int    ft_create_threads(t_data *input);
+int    ft_join_threads(t_data *input);
 
 //------- process.c ------//
 void	*ft_monitoring(void *arg);

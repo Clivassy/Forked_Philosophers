@@ -32,8 +32,12 @@ int main(int argc, char **argv)
     ft_init_struct(&input, argc, argv);
     ft_init_mutex(&input);
     ft_init_philos(&input);
-    ft_create_threads(&input);
-    ft_clean(&input);
+    if (ft_create_threads(&input) < 0)
+		{
+			//ft_clean(&input);
+			return(-1);
+		}
+    //ft_clean(&input);
 	free(input.philosophers);
     return (0);
 }
