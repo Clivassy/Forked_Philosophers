@@ -29,12 +29,25 @@ int   ft_init_struct(t_data *input, int ac, char **av)
 }
 
 // Init all the mutex that we will use
-void	ft_init_mutex(t_data *input)
+int	ft_init_mutex(t_data *input)
 {
+    int i;
+
+    i = 0;
+
+    input->fork = malloc((input->nb_philos) * sizeof(pthread_mutex_t));
+    if (!input->fork)
+        return(-1);
+    while (i < input->nb_philos)
+    {
+        pthread_mutex_init(&input->fork[i], NULL);
+        i++;
+    }
     pthread_mutex_init(&input->m_eat, NULL);
 	pthread_mutex_init(&input->m_print, NULL);
     pthread_mutex_init(&input->m_dead, NULL);
     pthread_mutex_init(&input->m_eat_enough, NULL);
+    return(0);
 }
 
 // Init each philo of the tab of philos.
@@ -55,12 +68,14 @@ void    ft_init_philos(t_data *input)
         input->philosophers[i].nb_of_meals = 0;
         input->philosophers[i].input = input;
         input->philosophers[i].enough_meals = 0;
-        input->philosophers[i].right_fork = NULL;
-        pthread_mutex_init(&input->philosophers[i].left_fork, NULL);
+        input->philosophers[i].right_fork = (i + 1) % input->nb_philos;
+        input->philosophers[i].left_fork = i;
+        /*pthread_mutex_init(&input->philosophers[i].left_fork, NULL);
 		if (i == input->nb_philos - 1)
 			input->philosophers[i].right_fork= &input->philosophers[0].left_fork;
 		else
-			input->philosophers[i].right_fork = &input->philosophers[i + 1].left_fork;
+			input->philosophers[i].right_fork = &input->philosophers[i + 1].left_fork;*/
         i++;
     }
+    ft_create_threads(input);
 }

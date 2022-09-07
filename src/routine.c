@@ -3,21 +3,37 @@
 // Terminate the simulation in two cases :
 // > Death of one philo : not enough time_to_die 
 // > time_each_philos_must_eat is reached
-void	*ft_monitoring(void *arg)
+//void	*ft_monitoring(void *arg)
+/*void	ft_monitoring(t_philo *one_philo)
 {
-	t_philo *one_philo;
+	//t_philo *one_philo;
 
-	one_philo = (t_philo*)arg;
+	//one_philo = (t_philo*)arg;
 	while (1)
 	{
 		if (ft_is_dead(one_philo->input) == 1)
-			return (NULL);
+			//return (NULL);+
+			return ;
 		if (one_philo->input->must_eat != -1)
 			if (ft_eat_enough(one_philo) == 1)
-				return (NULL);
+				return ;
+				//return (NULL);
 		usleep(100);
 	}
-	return (NULL);
+	//return (NULL);
+}*/
+
+void	ft_monitoring(t_data *input)
+{
+	while (1)
+	{
+		if (ft_is_dead(input) == 1)
+			return ;
+		if (input->must_eat != -1)
+			if (ft_eat_enough(input->philosophers) == 1)
+				return ;
+		usleep(100);
+	}
 }
 
 // While no philos died or have eat enough the simulation goes on. 

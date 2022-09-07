@@ -2,17 +2,20 @@
 
 void  ft_take_forks(t_philo *one_philo)
 {
+    t_data *input;
+
+    input = one_philo->input;
     if (one_philo->id % 2 == 0)
         ft_prioritize(one_philo);
 	else
 	{
-		pthread_mutex_lock(&one_philo->left_fork);
+		pthread_mutex_lock(&input->fork[one_philo->left_fork]);
         ft_print_state(one_philo, TOOK_FORK);
 		if (one_philo->input->nb_philos == 1)
             ft_one_philo(one_philo);
         else
         {
-            pthread_mutex_lock(one_philo->right_fork);
+            pthread_mutex_lock(&input->fork[one_philo->right_fork]);
             ft_print_state(one_philo, TOOK_FORK); 
         }		
 	}
@@ -39,8 +42,11 @@ void   ft_eat(t_philo *one_philo)
 
 void	ft_leave_forks(t_philo *one_philo)
 {
-    pthread_mutex_unlock(one_philo->right_fork);
-    pthread_mutex_unlock(&one_philo->left_fork);
+    t_data *input; 
+    input = one_philo->input;
+
+    pthread_mutex_unlock(&input->fork[one_philo->right_fork]);
+    pthread_mutex_unlock(&input->fork[one_philo->left_fork]);
 }
 
 void ft_sleep(t_philo *one_philo)

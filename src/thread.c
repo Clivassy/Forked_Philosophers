@@ -11,6 +11,16 @@ int    ft_join_threads(t_data *input)
             return(-1);
         i++;
 	}
+    i = 0;
+	while (i < input->nb_philos)
+	{
+		pthread_mutex_destroy(&input->fork[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&input->m_eat);
+    pthread_mutex_destroy(&input->m_print);
+	pthread_mutex_destroy(&input->m_dead);
+	pthread_mutex_destroy(&input->m_eat_enough);
     return(0);
 }
 
@@ -20,7 +30,7 @@ int    ft_join_threads(t_data *input)
 int    ft_create_threads(t_data *input)
 {
     int i;
-    pthread_t check_death;
+    //pthread_t check_death;
 
     i = 0;
     while (i < input->nb_philos)
@@ -30,14 +40,15 @@ int    ft_create_threads(t_data *input)
             return(-1);
         i++;
     }
-    if (input->nb_philos > 1)
+    ft_monitoring(input);
+   /* if (input->nb_philos > 1)
     {
         if (pthread_create(&check_death, NULL, &ft_monitoring, input->philosophers))
             return(-1);
         pthread_detach(check_death);
-    }
+    }*/
     if (ft_join_threads(input) < 0)
         return(-1);
-    ft_clean(input);
+   // ft_clean(input);
     return(0);
 }

@@ -29,8 +29,8 @@ typedef struct s_philo
     long            time;
     t_data          *input; 
     pthread_t       thread;
-    pthread_mutex_t left_fork;
-    pthread_mutex_t *right_fork;
+    int             left_fork;
+    int             right_fork;
 
 }	t_philo;
 
@@ -45,6 +45,7 @@ typedef struct s_data
     int     time_to_sleep;
     int     must_eat;
     t_philo *philosophers;
+    pthread_mutex_t *fork;
     pthread_mutex_t m_eat_enough;
     pthread_mutex_t m_print;
     pthread_mutex_t m_dead;
@@ -53,7 +54,7 @@ typedef struct s_data
 
 // --- init.c ---- //
 int     ft_init_struct(t_data *input, int ac, char **av);
-void	ft_init_mutex(t_data *input);
+int	    ft_init_mutex(t_data *input);
 void    ft_init_philos(t_data *input);
 
 // ------ thread.c -------// 
@@ -61,7 +62,8 @@ int    ft_create_threads(t_data *input);
 int    ft_join_threads(t_data *input);
 
 //------- process.c ------//
-void	*ft_monitoring(void *arg);
+//void	*ft_monitoring(void *arg);
+void	ft_monitoring(t_data *input);
 void    *ft_live(void *arg);
 
 //------- monitoring.c ------//

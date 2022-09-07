@@ -23,7 +23,7 @@ INCLUDES_DIR= -I ./includes/
 
 # Compilateurs
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=thread
 
 ##########   RULES   ##########
 all: $(NAME)

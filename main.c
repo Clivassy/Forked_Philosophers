@@ -8,7 +8,7 @@
 5\ Destruction des mutexs + libération de la mémoire allouée dans data.
 ---------------------------------------------------------------- */
 
-void	ft_clean(t_data *input)
+/*void	ft_clean(t_data *input)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ void	ft_clean(t_data *input)
 	pthread_mutex_destroy(&input->m_dead);
 	pthread_mutex_destroy(&input->m_eat_enough);
 
-}
+}*/
 
 int main(int argc, char **argv)
 {
@@ -32,11 +32,8 @@ int main(int argc, char **argv)
     ft_init_struct(&input, argc, argv);
     ft_init_mutex(&input);
     ft_init_philos(&input);
-    if (ft_create_threads(&input) < 0)
-		{
-			ft_clean(&input);
-			return(-1);
-		}
+   // ft_create_threads(&input);
+	//ft_clean(&input);
 	free(input.philosophers);
     return (0);
 }
