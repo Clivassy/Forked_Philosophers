@@ -34,10 +34,9 @@ int main(int argc, char **argv)
     ft_init_philos(&input);
     if (ft_create_threads(&input) < 0)
 		{
-			//ft_clean(&input);
+			ft_clean(&input);
 			return(-1);
 		}
-    //ft_clean(&input);
 	free(input.philosophers);
     return (0);
 }

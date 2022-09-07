@@ -38,5 +38,6 @@ int    ft_create_threads(t_data *input)
     }
     if (ft_join_threads(input) < 0)
         return(-1);
+    ft_clean(input);
     return(0);
 }
