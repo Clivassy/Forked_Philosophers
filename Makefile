@@ -4,7 +4,6 @@ NAME = philo
 
 # Sources
 SRCS += main.c
-SRCS += src/errors.c
 SRCS += src/thread.c
 SRCS += src/routine.c
 SRCS += src/actions.c
