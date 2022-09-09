@@ -7,33 +7,25 @@
 4\ Ce thread gère 1) la mort d'un philo et 2) lorsque chaque philo a assez mangé.
 5\ Destruction des mutexs + libération de la mémoire allouée dans data.
 ---------------------------------------------------------------- */
-
-/*void	ft_clean(t_data *input)
+void	ft_free_data(t_data *input)
 {
-	int	i;
-
-	i = 0;
-	while (i < input->nb_philos)
-	{
-		pthread_mutex_destroy(&input->philosophers[i].left_fork);
-		i++;
-	}
-	pthread_mutex_destroy(&input->m_eat);
-    pthread_mutex_destroy(&input->m_print);
-	pthread_mutex_destroy(&input->m_dead);
-	pthread_mutex_destroy(&input->m_eat_enough);
-
-}*/
+	free(input->philosophers);
+	free(input->fork);
+}
 
 int main(int argc, char **argv)
 {
     t_data input;
     
-    ft_init_struct(&input, argc, argv);
+    if (ft_init_struct(&input, argc, argv) < 0)
+        return(-1);
     ft_init_mutex(&input);
-    ft_init_philos(&input);
-   // ft_create_threads(&input);
-	//ft_clean(&input);
-	free(input.philosophers);
+    if (ft_init_philos(&input) < 0)
+    {
+        ft_free_data(&input);
+        return(-1);
+    }
+   	ft_create_threads(&input);
+	ft_free_data(&input);
     return (0);
 }

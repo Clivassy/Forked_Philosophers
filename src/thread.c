@@ -1,26 +1,43 @@
 #include "../includes/philosophers.h"
 
-int    ft_join_threads(t_data *input)
+
+int ft_destroy_mutexes(t_data *input)
+{
+	int	i;
+
+    i = 0;
+	while (i < input->nb_philos)
+	{
+        if (pthread_mutex_destroy(&input->fork[i]) != 0)
+            return(-1);
+		i++;
+	}
+    if (pthread_mutex_destroy(&input->m_eat) != 0)
+        return (-1);
+    if (pthread_mutex_destroy(&input->m_print) != 0)
+        return (-1);
+    if (pthread_mutex_destroy(&input->m_dead) != 0)
+    {
+        return (-1);
+    }
+	if (pthread_mutex_destroy(&input->m_eat_enough) != 0)
+        return (-1);
+    return(0);
+}
+
+int    ft_join_and_end_threads(t_data *input)
 {
     int i;
 
     i = 0;
 	while (i < input->nb_philos)
 	{
-		if (pthread_join(input->philosophers[i].thread, NULL))
+		if (pthread_join(input->philosophers[i].thread, NULL) != 0)
             return(-1);
         i++;
 	}
-    i = 0;
-	while (i < input->nb_philos)
-	{
-		pthread_mutex_destroy(&input->fork[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&input->m_eat);
-    pthread_mutex_destroy(&input->m_print);
-	pthread_mutex_destroy(&input->m_dead);
-	pthread_mutex_destroy(&input->m_eat_enough);
+    if (ft_destroy_mutexes(input) != 0)
+        return(-1);
     return(0);
 }
 
@@ -30,7 +47,6 @@ int    ft_join_threads(t_data *input)
 int    ft_create_threads(t_data *input)
 {
     int i;
-    //pthread_t check_death;
 
     i = 0;
     while (i < input->nb_philos)
@@ -41,14 +57,7 @@ int    ft_create_threads(t_data *input)
         i++;
     }
     ft_monitoring(input);
-   /* if (input->nb_philos > 1)
-    {
-        if (pthread_create(&check_death, NULL, &ft_monitoring, input->philosophers))
-            return(-1);
-        pthread_detach(check_death);
-    }*/
-    if (ft_join_threads(input) < 0)
+    if (ft_join_and_end_threads(input) < 0)
         return(-1);
-   // ft_clean(input);
     return(0);
 }

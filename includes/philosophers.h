@@ -55,14 +55,14 @@ typedef struct s_data
 // --- init.c ---- //
 int     ft_init_struct(t_data *input, int ac, char **av);
 int	    ft_init_mutex(t_data *input);
-void    ft_init_philos(t_data *input);
+int    ft_init_philos(t_data *input);
 
 // ------ thread.c -------// 
 int    ft_create_threads(t_data *input);
-int    ft_join_threads(t_data *input);
+int    ft_join_and_end_threads(t_data *input);
+int ft_destroy_mutexes(t_data *input);
 
 //------- process.c ------//
-//void	*ft_monitoring(void *arg);
 void	ft_monitoring(t_data *input);
 void    *ft_live(void *arg);
 
@@ -89,9 +89,9 @@ void    ft_exit_2(t_data *input, char *msg);
 //--- utils.c ---- //
 void    ft_print_state(t_philo *one_philo, char *str);
 void	ft_clean(t_data *input);
-int     ft_atoi(const char *nptr);
+long long int	ft_atoi(const char *nptr);
 int     ft_isdigit(int c);
-int     ft_check_input(char **av);
+int ft_syntax_check(char **av);
 int     ft_strcmp(char *s1, char *s2);
 
 //------ time.c -------//

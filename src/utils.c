@@ -7,9 +7,9 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long long int	ft_atoi(const char *nptr)
 {
-	long	nb;
+	long long	nb;
 	int		i;
 	int		signe;
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *nptr)
 	return (nb * signe);
 }
 
-int ft_check_input(char **av)
+int ft_syntax_check(char **av)
 {
     int i;
     int j;
@@ -47,10 +47,15 @@ int ft_check_input(char **av)
             if (!ft_isdigit(av[i][j]))
 			{
 				printf(RED"Error: invalid argument\n"NORMAL);
-        		exit(EXIT_FAILURE);
+				return(-1);
 			}
             j++;
         }
+		if (ft_atoi(av[i]) < -2147483648 || ft_atoi(av[i]) > 2147483647)
+		{
+			printf(RED"Error: invalid argument\n"NORMAL);
+			return(-1);
+		}
         i++;
     }
     return (0);

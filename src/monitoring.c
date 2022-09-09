@@ -43,7 +43,7 @@ int	ft_check_meals(t_philo *one_philo)
 	return (0);
 }
 
-//
+
 int	ft_is_dead(t_data *input)
 {
 	int	i;
