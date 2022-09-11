@@ -30,10 +30,14 @@ void	ft_free_data(t_data *input)
 int	main(int argc, char **argv)
 {
 	t_data	input;
+	int ret;
 
 	if (ft_init_struct(&input, argc, argv) < 0)
 		return (-1);
-	if (ft_init_mutex(&input) < 0)
+	ret = ft_init_mutex(&input);
+	if (ret == -2)
+		return (-1);
+	if ret( == -1)
 	{
 		free(input.fork);
 		return (-1);

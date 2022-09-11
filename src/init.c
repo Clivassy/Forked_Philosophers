@@ -65,7 +65,7 @@ int	ft_init_mutex(t_data *input)
 	i = 0;
 	input->fork = malloc((input->nb_philos) * sizeof(pthread_mutex_t));
 	if (!input->fork)
-		return (-1);
+		return (-2);
 	while (i < input->nb_philos)
 	{
 		if (pthread_mutex_init(&input->fork[i], NULL) != 0)
