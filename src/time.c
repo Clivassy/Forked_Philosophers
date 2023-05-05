@@ -12,7 +12,7 @@
 
 #include "../includes/philosophers.h"
 
-// return time in millisecond
+//-- Return time in millisecond
 long long	ft_get_timestamp(void)
 {
 	struct timeval	current_time;
@@ -24,9 +24,8 @@ long long	ft_get_timestamp(void)
 	return (timestamp);
 }
 
-// diff entre sleep et usleep :
-// usleep accept micro second tandis que sleep il faut passer des secondes 
-// en parametre.
+//-- Diff entre sleep et usleep :
+// --> usleep accept micro second whereas sleep need second as args.
 void	ft_usleep(int ms)
 {
 	long int	start;

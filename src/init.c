@@ -28,9 +28,9 @@ int	ft_args_check(t_data *input, char **av)
 	return (0);
 }
 
-// Init and check of all the structure control data 
-// Return 0 in case of success
-// Exit properly the program in case of failure 
+//-- Init and check of all the structure control data.
+//-- Return 0 in case of success.
+//-- Exit properly the program in case of failure.
 int	ft_init_struct(t_data *input, int ac, char **av)
 {
 	if (ac < 5 || ac > 6)
@@ -57,7 +57,7 @@ int	ft_init_struct(t_data *input, int ac, char **av)
 	return (0);
 }
 
-// Init all the mutex that we will use
+//-- Init all the mutex that we will use
 int	ft_init_mutex(t_data *input)
 {
 	int	i;
@@ -83,8 +83,8 @@ int	ft_init_mutex(t_data *input)
 	return (0);
 }
 
-// Init each philo of the tab of philos.
-// Each philo has one mutex left fork initialized here. 
+//-- Init each philo of the tab of philos.
+//-- Each philo has one mutex left fork initialized here. 
 int	ft_init_philos(t_data *input)
 {
 	int	i;

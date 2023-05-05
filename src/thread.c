@@ -17,7 +17,7 @@ int	ft_destroy_mutexes(t_data *input)
 	int i;
 
 	i = 0;
-	while (i < input->nb_philos);
+	while (i < input->nb_philos)
 	{
 		if (pthread_mutex_destroy(&input->fork[i]) != 0)
 			return (-1);
@@ -55,9 +55,9 @@ int	ft_join_and_end_threads(t_data *input)
 	return (0);
 }
 
-// Create a thread for each philo
-// Create another thread to monitor death only if nb_of_philos > 1 
-// Quit properly if one creation failed
+//-- Create a thread for each philo
+//-- Create another thread to monitor death only if nb_of_philos > 1 
+//-- Quit properly if one creation failed
 int	ft_create_threads(t_data *input)
 {
 	int	i;

@@ -12,9 +12,9 @@
 
 #include "../includes/philosophers.h"
 
-// Terminate the simulation in two cases :
-// > Death of one philo : not enough time_to_die 
-// > time_each_philos_must_eat is reached
+//-- Terminate the simulation in two cases :
+// 1- Death of one philo : not enough time_to_die 
+// 2- time_each_philos_must_eat is reached
 void	ft_monitoring(t_data *input)
 {
 	while (1)
@@ -28,7 +28,7 @@ void	ft_monitoring(t_data *input)
 	}
 }
 
-// While no philos died or have eat enough the simulation goes on. 
+//-- While no philos died or have eat enough the simulation goes on. 
 void	*ft_live(void *arg)
 {
 	t_philo	*one_philo;

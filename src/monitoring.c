@@ -12,9 +12,9 @@
 
 #include "../includes/philosophers.h"
 
-// Check if the variable enough_meals was set to 1 for all philos
-// it would mean that all philos had enough meals
-// if all philos had enough meals the variable stop_eating is set to 1
+//-- Check if the variable enough_meals was set to 1 for all philos
+// --> it would mean that all philos had enough meals.
+//-- If all philos had enough meals the variable stop_eating is set to 1
 int	ft_eat_enough(t_philo *one_philo)
 {
 	int	i;
@@ -40,9 +40,9 @@ int	ft_eat_enough(t_philo *one_philo)
 	return (0);
 }
 
-// Check if the variable stop_eating was set to 1(= enough meals for all philos)
-// return 1 if all philos ate enough
-// return 0 if not all philos ate enough
+//-- Check if the variable stop_eating was set to 1(= enough meals for all philos)
+//--> return 1 if all philos ate enough.
+//--> return 0 if not all philos ate enough.
 int	ft_check_meals(t_philo *one_philo)
 {
 	pthread_mutex_lock(&one_philo->input->m_eat);
@@ -80,9 +80,9 @@ int	ft_is_dead(t_data *input)
 	return (0);
 }
 
-// Check if the variable is_dead was set to 1 (= one philo died)
-// return 1 if one philo died
-// return 0 if no one is dead
+//-- Check if the variable is_dead was set to 1 (= one philo died)
+//-- return 1 if one philo died.
+//-- return 0 if no one is dead.
 int	ft_check_death(t_philo *one_philo)
 {
 	pthread_mutex_lock(&one_philo->input->m_dead);
