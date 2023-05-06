@@ -28,7 +28,7 @@ The output of the program is a log of the actions of each philosopher, along wit
 
 ## Usage
 
-To compile the program, navigate to the src directory and run make. This will create an executable called philo. <br>
+To compile the program, run make. This will create an executable called philo. <br>
 To run the program, pass in the desired command-line arguments: <br>
 ``./philo 5 800 200 200``
 This will simulate a table with 5 philosophers, where each philosopher dies after 800 milliseconds of inactivity, it takes 200 milliseconds to eat and sleep.<br>
