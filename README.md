@@ -23,8 +23,8 @@ The output of the program is a log of the actions of each philosopher, along wit
 ## Installation
 
 ``git clone git@github.com:Clivassy/Forked_Philosophers.git``<br>
-``cd Forked_Philosophers``
-``make
+``cd Forked_Philosophers``<br>
+``make``<br>
 
 ## Usage
 
