@@ -36,8 +36,15 @@ Optionally, you can specify the number of times each philosopher must eat before
 ``./philo 5 800 200 200 3``<br>
 
 This will end the simulation after each philosopher has eaten 3 times. <br>
-## Code Structure
-
-## Rules and Constraints
 
 ## Useful Ressources 
+The Dining Philosophers Problem : <br>
+<https://www.youtube.com/watch?v=FYUi-u7UWgw> <br>
+<https://www.youtube.com/watch?v=NbwbQQB7xNQ> <br><br> 
+Threads : <br>
+<https://www.youtube.com/watch?v=o_GbRujGCnM> <br>
+<https://www.tutorialspoint.com/multithreading-in-c> <br>
+<https://www.geeksforgeeks.org/multithreading-c-2/> <br>
+<br>
+Datas Race: <br>
+<https://www.youtube.com/watch?v=oq29KUy29iQ&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2&index=4>
